@@ -1,0 +1,25 @@
+# Python
+*.pyc
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.coverage
+
+# Django
+*.log
+*.sqlite3  # Pour SQLite database, si tu en utilises une
+media/     # Pour les fichiers uploadés par les utilisateurs, si tu as configuré un répertoire media
+static/    # Pour les fichiers statiques collectés par collectstatic, si tu as configuré un répertoire static
+
+# Environnement virtuel
+venv/
+env/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
