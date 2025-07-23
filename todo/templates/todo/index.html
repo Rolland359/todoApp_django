@@ -1,0 +1,13 @@
+{% extends "todo/base.html" %}
+{% block content %}
+    {% if task_list %}
+        <h3>LISTE DES TACHES</h3>
+        {% for task in task_list %}
+            <ul>
+                <li><a href="{% url 'todo:edit' task.id %}">{{forloop.counter}} : {{ task }} | {{task.dead_line}} | {% if task.status %}Fait{% else %}A faire{% endif %}</a></li>
+            </ul>
+        {% endfor %}
+    {% else %}
+            <p>Aucun tâche disponible </p>
+    {% endif %}
+{% endblock %}

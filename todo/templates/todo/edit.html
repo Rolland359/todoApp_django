@@ -1,0 +1,27 @@
+{% extends "todo/base.html" %}
+{% block content %}
+    <p>Date limite actuelle : {{ tache.dead_line|date:"d m y" }}</p>
+    <h3>Modifier une tâche </h3>
+    <form action="{% url 'todo:traitement' tache.id %}" method="post">
+        {% csrf_token %}
+        <!-- un champ pour la description -->
+        <div>
+            Description : <input type="text" value="{{tache.description}}"required="True" name="description" id="description">
+        </div>
+        <!-- un champ pour le deadline -->
+        <div>
+            Deadline : <input type="date" value="{{tache.dead_line|date:'Y-m-d'}}" required="True" name="deadline" id="deadline">
+        </div>
+        <!--statu du tâche -->
+        <div>
+            
+            Status : <input type="checkbox" {% if tache.status %}checked{% endif %} name="status" id="status">
+        </div>
+        <!-- block bouton-->
+        <div>
+            <button type="submit" name="action" value="save">Save</button>
+            <button type="submit" name="action" value="delete">Delete</button>
+            <button type="reset" name="action" value="reset">Reset</button>
+        </div>
+    </form>
+{% endblock %}
