@@ -1,21 +1,30 @@
 {% extends "todo/base.html" %}
 
 {% block content %}
-    <h3>Ajouter une tache</h3>
-    <form action="{% url 'todo:process_add' %}" method="post">
-        {% csrf_token %}
-        <!-- un champ pour la description -->
-        <div>
-            Description : <input type="text" required name="description" id="description">
+{% load static %}
+    <div class="container p-5 my-5">
+        <div class="row justify-content-center">
+            <div class="container border rounded col-md-6 col-lg-5">
+                <h3 class="mt-4">Ajouter une tache</h3>
+                <form action="{% url 'todo:process_add' %}" method="post">
+                    {% csrf_token %}
+                    <!-- un champ pour la description -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input class="form-control" type="text" required name="description" id="description">
+                    </div>
+                    <!-- un champ pour le deadline -->
+                    <div class="mb-3">
+                        <label for="deadline" class="form-label">Deadline</label>
+                        <input type="date" class="form-control" required name="deadline" id="deadline">
+                    </div>
+                    <!-- block bouton-->
+                    <div class="mb-4">
+                        <button class="btn btn-primary" type="submit" name="action" value="add">Add</button>
+                        <button class="btn btn-secondary" type="reset" name="action" value="reset">Reset</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <!-- un champ pour le deadline -->
-        <div>
-            Deadline : <input type="date" required name="deadline" id="deadline">
-        </div>
-        <!-- block bouton-->
-        <div>
-            <button type="submit" name="action" value="add">Add</button>
-            <button type="reset" name="action" value="reset">Reset</button>
-        </div>
-    </form>
+    </div>
 {% endblock %}

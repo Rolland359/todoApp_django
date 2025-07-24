@@ -1,13 +1,19 @@
 {% extends "todo/base.html" %}
 {% block content %}
     {% if task_list %}
-        <h3>LISTE DES TACHES</h3>
+    <div class="container p-5 my-5 border rounded">
+        <h3 class="mb-4 text-center">LISTE DES TACHES</h3>
         {% for task in task_list %}
-            <ul>
-                <li><a href="{% url 'todo:edit' task.id %}">{{forloop.counter}} : {{ task }} | {{task.dead_line}} | {% if task.status %}Fait{% else %}A faire{% endif %}</a></li>
-            </ul>
+            <div class="card mt-3 shadow p-4 mb-4 bg-white ">
+                <div class="card-body">
+                    <h5 class="card-title">{{task.description}}</h5>
+                    <p class="card-text">{{ task.dead_line }}</p>
+                    <a class="btn {% if task.status %}btn-success{% else %}btn-warning{% endif %}" href="{% url 'todo:edit' task.id %}">{% if task.status %}Fait{% else %}A faire{% endif %}</a>
+                </div>
+            </div>
         {% endfor %}
     {% else %}
             <p>Aucun tâche disponible </p>
+    </div>
     {% endif %}
 {% endblock %}
